@@ -11,7 +11,7 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia el contenido actual al contenedor en /app
-COPY . /app
+COPY frontend/ /app
 
 # Expone el puerto 5000 (el mismo que está configurado en tu aplicación Flask)
 EXPOSE 5000
