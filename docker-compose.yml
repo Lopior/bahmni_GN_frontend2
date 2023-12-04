@@ -10,6 +10,8 @@ services:
     restart: "always"
     networks:
       bahmni-standard_default:
+        aliases:
+          - "gn_frontend"
       
 networks:
   bahmni-standard_default:
