@@ -2,8 +2,12 @@ from flask import Flask, render_template, jsonify, request
 import requests
 import json
 import datetime
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
+
+url_backend = os.getenv('url_backend_var')
 
 @app.route('/')
 def index():
@@ -13,7 +17,7 @@ def index():
 
 def get_ges_data(id_ges):
     # Hacer la solicitud GET a la API
-    response = requests.get(f'http://localhost:4000/ges/{id_ges}')
+    response = requests.get(f'{url_backend}/ges/{id_ges}')
     # Verificar si la solicitud fue exitosa (código de estado 200)
     if response.status_code == 200:
         data = response.json()
@@ -34,7 +38,7 @@ def get_ges_data(id_ges):
 def post_ges_data():
     data = dict(request.form)
     # Hacer la solicitud POST al backend
-    response = requests.post('http://localhost:4000/ges', json=json.dumps(data))
+    response = requests.post(url_backend+'/ges', json=json.dumps(data))
     # Verificar si la solicitud fue exitosa (código de estado 200)
     if response.status_code == 200:
         return render_template('form_ges_response.html', data=response.json())
@@ -45,7 +49,7 @@ def post_ges_data():
 @app.route('/notificaciongespaciente/<string:uuid_notificacion>', methods=['GET'])
 def get_ges_paciente_data(uuid_notificacion):
     # Hacer la solicitud GET a la API
-    response = requests.get(f'http://localhost:4000/ges?uuid={uuid_notificacion}')
+    response = requests.get(f'{url_backend}/ges?uuid={uuid_notificacion}')
     # Verificar si la solicitud fue exitosa (código de estado 200)
     if response.status_code == 200:
         data = response.json()
@@ -66,7 +70,7 @@ def post_ges_data_paciente():
     print(data)
     print(data["firma_paciente"])
     # Hacer la solicitud POST al backend
-    response = requests.post('http://localhost:4000/ges/firma', json=json.dumps(data))
+    response = requests.post(url_backend+'/ges/firma', json=json.dumps(data))
     # Verificar si la solicitud fue exitosa (código de estado 200)
     if response.status_code == 200:
         return render_template('form_ges_response.html', data=response.json())
@@ -77,7 +81,7 @@ def post_ges_data_paciente():
 @app.route('/vernotificacionges/<string:id_ges>', methods=['GET'])
 def view_ges_data(id_ges):
     # Hacer la solicitud GET a la API
-    response = requests.get(f'http://localhost:4000/ges/{id_ges}')
+    response = requests.get(f'{url_backend}/ges/{id_ges}')
     # Verificar si la solicitud fue exitosa (código de estado 200)
     if response.status_code == 200:
         data = response.json()
