@@ -250,7 +250,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-1"></div>
-                <div class="col-md-4">    
+                <div class="col-md-4">
+                    <input type="button" id="descargar" value="Descargar" class="btn btn-primary">    
                     <input type="number" id="id" name="id" class="form-control" value="{{ data.id }}" style="display: none;"><br><br>
                     <input type="number" id="obs_id" name="obs_id" class="form-control" style="display: none;"><br><br>
                     <input type="number" id="condition_id" name="condition_id" class="form-control" style="display: none;"><br><br>
@@ -277,5 +278,23 @@
 
         </div>
     </form>
+    <script>
+        document.getElementById('descargar').addEventListener('click', function() {
+            fetch('/vernotificacionges/pdf/{{ data.id }}', {
+                method: 'GET',
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.pdf';
+                document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+                a.click();    
+                a.remove();  //afterwards we remove the element again         
+            });
+        });
+
+    </script>
 </body>
 </html>
