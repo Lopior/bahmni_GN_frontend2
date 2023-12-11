@@ -15,7 +15,7 @@ h3 {
     font-size: 18px;
 }
 
-input[type="text"], input[type="email"], input[type="button"]  {
+input[type="text"], input[type="email"], input[type="button"], input[type="datetime-local"], input[type="submit"] {
     font-family: gobCL,Helvetica,Arial,sans-serif;
     font-size: 12px;
 }

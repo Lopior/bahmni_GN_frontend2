@@ -24,41 +24,49 @@ def index():
 
 @app.route('/notificacionges/<string:id_ges>', methods=['GET'])
 def get_ges_data(id_ges):
-    # Hacer la solicitud GET a la API
-    response = requests.get(f'{url_backend}/ges/{id_ges}')
-    practitioner_user = request.args.get('practitioner')
-    
-    # Verificar si la solicitud fue exitosa (código de estado 200)
-    if response.status_code == 200:
-        data = response.json()
-        # Procesar los datos obtenidos
-        #consultar el person id y name del practitioner
-        response_practitioner = requests.get(f'{url_backend}/practitioner/{practitioner_user}')
-        
-        if response_practitioner.status_code == 200:
-            data_practitioner = response_practitioner.json()
-            print("*********** DATOS PRACTITIONER ***********")
-            print(practitioner_user)
-            print(data_practitioner)
-            data['notificador_id'] = data_practitioner['person_id']
-            data['nombre_notificador'] = data_practitioner['given_name']+' '+data_practitioner['family_name']
-            #print(response.text)  # Imprimir el contenido de la respuesta en la consola
-            print("*********** DATOS DESDE API BACKEND ***********")
-        
-            # Extraer fecha y hora actual
-            now = datetime.datetime.now()
-            data['fechahora_notificacion'] = now.strftime("%Y-%m-%d %H:%M:%S")
-            print(data)
-            return render_template('form_ges.html', data=data)
+    try:
+        # Hacer la solicitud GET a la API
+        response = requests.get(f'{url_backend}/ges/{id_ges}')
+        practitioner_user = request.args.get('practitioner')
+        practitioner_user = practitioner_user.strip()  # Remove leading and trailing spaces
+        practitioner_user = practitioner_user.replace('"', '')  # Remove double quotes
+        # Verificar si la solicitud fue exitosa (código de estado 200)
+        if response.status_code == 200:
+            data = response.json()
+            # Procesar los datos obtenidos
+            #consultar el person id y name del practitioner
+            response_practitioner = requests.get(f'{url_backend}/practitioner/{practitioner_user}')
+            
+            if response_practitioner.status_code == 200:
+                
+                data_practitioner = response_practitioner.json()
+                print("*********** DATOS PRACTITIONER ***********")
+                print (response_practitioner)
+                print(practitioner_user)
+                print(data_practitioner)
+                print(json.dumps(data_practitioner, indent=4))
+                data['notificador_id'] = data_practitioner['person_id']
+                data['nombre_notificador'] = data_practitioner['given_name']+' '+data_practitioner['family_name']
+                #print(response.text)  # Imprimir el contenido de la respuesta en la consola
+                print("*********** DATOS DESDE API BACKEND ***********")
+            
+                # Extraer fecha y hora actual
+                now = datetime.datetime.now()
+                data['fechahora_notificacion'] = now.strftime("%Y-%m-%d %H:%M:%S")
+                print(data)
+                return render_template('form_ges.html', data=data)
+
+            else:
+                # Manejar el caso de error en la solicitud
+                return 'Error al obtener los datos del practitioner', 500
 
         else:
             # Manejar el caso de error en la solicitud
-            return 'Error al obtener los datos del practitioner', 500
-
-    else:
-        # Manejar el caso de error en la solicitud
-        return 'Error al obtener los datos del caso', 500
-
+            return 'Error al obtener los datos del caso', 500
+    except Exception as e:
+        print("Error al notificar GES:", str(e))
+        return jsonify({'cod': 'error', 'message': 'error al notificar GES'+str(e)})
+    
 @app.route('/notificacionges', methods=['POST'])
 def post_ges_data():
     data = dict(request.form)
@@ -91,17 +99,21 @@ def get_ges_paciente_data(uuid_notificacion):
 
 @app.route('/notificaciongespaciente', methods=['POST'])
 def post_ges_data_paciente():
-    data = dict(request.form)
-    print(data)
-    print(data["firma_paciente"])
-    # Hacer la solicitud POST al backend
-    response = requests.post(url_backend+'/ges/firma', json=json.dumps(data))
-    # Verificar si la solicitud fue exitosa (código de estado 200)
-    if response.status_code == 200:
-        return render_template('form_ges_response.html', data=response.json())
-    else:
-        # Manejar el caso de error en la solicitud
-        return 'Error al enviar los datos al backend', 500
+    try:
+        data = dict(request.form)
+        print(data)
+        print(data["firma_paciente"])
+        # Hacer la solicitud POST al backend
+        response = requests.post(url_backend+'/ges/firma', json=json.dumps(data))
+        # Verificar si la solicitud fue exitosa (código de estado 200)
+        if response.status_code == 200:
+            return render_template('form_ges_response.html', data=response.json())
+        else:
+            # Manejar el caso de error en la solicitud
+            return 'Error al enviar los datos al backend', 500
+    except Exception as e:
+        print("Error al firmar notificacion GES:", str(e))
+        return jsonify({'cod': 'error', 'message': 'error al firmar notificacion GES'+str(e)})
     
 @app.route('/vernotificacionges/<string:id_ges>', methods=['GET'])
 def view_ges_data(id_ges):

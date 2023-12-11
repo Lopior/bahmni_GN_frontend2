@@ -4,147 +4,137 @@
     <meta charset="UTF-8">
     <title>FORMULARIO DE CONSTANCIA INFORMACIÓN AL PACIENTE GES</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/css/style.css">
 </head>
 <body>
     <form action="/notificacionges" method="post">
+        <div class="container-fluid" >
+            <div class="row">
+                <div class="col-md-12 centrado">
+                    <img src="http://127.0.0.1:5000/static/img/channels-15_bg_header.png" alt="img_header"><br>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
-                    <h2>FORMULARIO DE CONSTANCIA INFORMACIÓN AL PACIENTE GES</h2>
+                <div class="col-md-12">
+                    <h2>FORMULARIO DE CONSTANCIA INFORMACIÓN AL PACIENTE GES<br>(Artículo 24°, Ley 19.966)</h2>
                 </div>
-                <div class="col-md-1"></div>
             </div>
         </div>
         <br>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-4">
+
+                <div class="col-md-12">
                     <h3>Datos del prestador</h3>
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
+
                 <div class="col-md-4">
                     <label for="nombre_establecimiento">Nombre Establecimiento:</label>
                     <input type="text" id="nombre_establecimiento" name="nombre_establecimiento" value="{{data.nombre_establecimiento}}" class="form-control" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="direccion_establecimiento">Dirección:</label>
                     <input type="text" id="direccion_establecimiento" name="direccion_establecimiento" value="{{data.direccion_establecimiento}}" class="form-control" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="ciudad_establecimiento">Ciudad:</label>
                     <input type="text" id="ciudad_establecimiento" name="ciudad_establecimiento" value="{{data.ciudad_establecimiento}}" class="form-control" readonly>
                 </div>
-                <div class="col-md-1"></div>
+
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
+
                 <div class="col-md-4">
                     <label for="nombre_notificador">Nombre persona que notifica:</label>
-                    <input type="text" id="nombre_notificador" name="nombre_notificador" value="{{data.nombre_notificador}}" class="form-control">
+                    <input type="text" id="nombre_notificador" name="nombre_notificador" value="{{data.nombre_notificador}}" class="form-control" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="rut_notificador">RUT:</label>
-                    <input type="text" id="rut_notificador" name="rut_notificador" value="{{data.rut_notificador}}" class="form-control">
+                    <input type="text" id="rut_notificador" name="rut_notificador" value="{{data.rut_notificador}}" class="form-control" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
 
                 </div>
-                <div class="col-md-1"></div>
+
             </div>
         </div>
         <br>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <h3>Antecedentes del Paciente</h3>
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
+
                 <div class="col-md-4">
                     <label for="nombre_paciente">Nombre:</label>
                     <input type="text" id="nombre_paciente" name="nombre_paciente" class="form-control" value="{{ data.nombre_paciente }}" readonly>
 
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="rut_paciente">Rut:</label>
                     <input type="text" id="rut_paciente" name="rut_paciente" class="form-control" value="{{ data.rut_paciente }}" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="aseguradora_paciente">Aseguradora:</label>
                     <input type="text" id="aseguradora_paciente" name="aseguradora_paciente" value="{{data.aseguradora_paciente}}" class="form-control" readonly>
                 </div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
+
                 <div class="col-md-4">
                     <label for="direccion_paciente">Dirección:</label>
                     <input type="text" id="direccion_paciente" name="direccion_paciente" class="form-control" value="{{data.direccion_paciente}}" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="comuna_paciente">Comuna:</label>
                     <input type="text" id="comuna_paciente" name="comuna_paciente" class="form-control" value="{{data.comuna_paciente}}" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="region_paciente">Región:</label>
                     <input type="text" id="region_paciente" name="region_paciente" class="form-control" value="{{data.region_paciente}}" readonly>
                 </div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
                 <div class="col-md-4">
                     <label for="telefono_fijo_paciente">Telefono Fijo:</label>
                     <input type="text" id="telefono_fijo_paciente" name="telefono_fijo_paciente" class="form-control" value="{{data.telefono_fijo_paciente}}" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="celular_paciente">Celular:</label>
                     <input type="text" id="celular_paciente" name="celular_paciente" class="form-control" value="{{data.celular_paciente}}" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="email_paciente">E-mail:</label>
                     <input type="email" id="email_paciente" name="email_paciente" value="{{ data.email_paciente }}" class="form-control">
                 </div>
-                <div class="col-md-1"></div>
             </div>
             <br>
         </div>
         <br>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <h3>Información médica</h3>
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <label for="diagnostico_ges">Confirmación diagnostica GES:</label>
                     <input type="text" id="diagnostico_ges" name="diagnostico_ges" class="form-control" value="{{ data.diagnostico_ges }}" readonly>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="tipo">Tipo:</label><br>
                     <input type="radio" id="confirmacion" name="tipo" value="confirmacion_diagnostica">
                     <label for="confirmacion_diagnostica">Confirmación diagnostica</label>
@@ -152,118 +142,71 @@
                     <input type="radio" id="tratamiento" name="tipo" value="tratamiento">
                     <label for="tratamiento">Paciente en tratamiento</label>
                 </div>
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-1"></div>
             </div>
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                     CONSTANCIA <br>
-                    Declaro que, con esta fecha y hora, he tomado conocimiento que tengo derecho a acceder a las Garantías Explícitas en Salud (GES), siempre que la atención sea otorgada en la red de Prestadores que me corresponde según Fonasa o Isapre, a que me encuentro adscrito.<br>
+                    Declaro que, con esta fecha y hora, he tomado conocimiento que tengo derecho a acceder a las “Garantías Explícitas en Salud”, GES, siempre que la atención sea otorgada en la “Red de Prestadores” que me corresponde según Fonasa o la Isapre, a la que me encuentro adscrito.<br>
                     <br>
                     IMPORTANTE: <br>
-                    Tenga presente que si no se cumplen las garantías ustede puede reclamar ante Fonasa o la Isapre, según corrresponda. Si la respuesta no es satisfactoria, usted puede recurrir en sugunda instancia a la Superintendencia de Salud.
+                    El paciente debe tener presente que si no se cumplen las garantías, puede reclamar ante el Fonasa o la Isapre, según corresponda. Si la respuesta no es satisfactoria, puede recurrir en segunda instancia a la Superintendencia de Salud.
                 </div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
                 <div class="col-md-4">
                     FECHA Y HORA DE NOTIFICACIÓN:
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <input type="datetime-local" id="fechahora_notificacion" name="fechahora_notificacion" class="form-control" value="{{data.fechahora_notificacion}}" readonly><br><br>
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-1"></div>
             </div>
         </div>
         <br>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                     En caso que la persona que tomó conocimiento no sea el paciente, identificar
                 </div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
                 <div class="col-md-4">
                     <label for="nombre_representante">Nombre:</label>
                     <input type="text" id="nombre_representante" name="nombre_representante" class="form-control">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="rut_representante">Rut:</label>
                     <input type="text" id="rut_representante" name="rut_representante" class="form-control">
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-1"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
                 <div class="col-md-4">
                     <label for="telefono_representante">Teléfono:</label>
                     <input type="text" id="telefono_representante" name="telefono_representante" class="form-control">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="email_representante">E-mail:</label>
                     <input type="email" id="email_representante" name="email_representante" class="form-control">
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-1"></div>
+
             </div>
             <br>
             <div class="row">
-                <div class="col-md-1"></div>
                 <div class="col-md-4">
                     <input type="submit" value="Notificar" class="btn btn-primary">
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-1"></div>
             </div>
         </div>
         <br>
         
 
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-4">    
-                    <input type="number" id="id" name="id" class="form-control" value="{{ data.id }}" style="display: none;"><br><br>
-                    <input type="number" id="obs_id" name="obs_id" class="form-control" style="display: none;"><br><br>
-                    <input type="number" id="condition_id" name="condition_id" class="form-control" style="display: none;"><br><br>
-                    <input type="number" id="notificador_id" name="notificador_id" class="form-control" style="display: none;"><br><br>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" id="cie10" name="cie10" class="form-control" style="display: none;"><br><br>
-
-                </div>
-                <div class="col-md-3">
-                    <input type="text" id="firma_notificador" name="firma_notificador" class="form-control" style="display: none;"><br><br>
-                    <input type="text" id="firma_paciente" name="firma_paciente" class="form-control" style="display: none;"><br><br>
-                    <input type="text" id="tipo_notificado" name="tipo_notificado" class="form-control" style="display: none;"><br><br>
-                    <label for="celular_representante" style="display: none;">celular_representante:</label>
-                    <input type="text" id="celular_representante" name="celularrepresentante" class="form-control" style="display: none;"><br><br>
-                    <input type="datetime-local" id="fechahora_registro" name="fechahora_registro" class="form-control" style="display: none;"><br><br>
-                    <input type="datetime-local" id="fechahora_actualizacion" name="fechahora_actualizacion" class="form-control" style="display: none;"><br><br>
-                    <input type="text" id="usuario_registro" name="usuario_registro" class="form-control" style="display: none;"><br><br>     
-                    <input type="text" id="usuario_actualizacion" name="usuario_actualizacion" class="form-control" style="display: none;"><br><br>
-                    <input type="text" id="estado" name="estado" class="form-control" style="display: none;" value="N"><br><br>
-                    <input type="text" id="uuid" name="uuid" class="form-control" value="{{ data.uuid }}" style="display: none;"><br><br>
-            </div>
-            <div class="col-md-1"></div>
-
-        </div>
-        <div class="container-fluid"></div>
+        <input type="number" id="id" name="id" class="form-control" value="{{ data.id }}" style="display: none;">
+        <input type="text" id="uuid" name="uuid" class="form-control" value="{{ data.uuid }}" style="display: none;">
+        <input type="text" id="notificador_id" name="notificador_id" class="form-control" value="{{ data.notificador_id }}" style="display: none;">
     </form>
     
 </body>
