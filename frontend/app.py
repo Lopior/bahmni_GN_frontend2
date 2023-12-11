@@ -23,22 +23,38 @@ def index():
     return render_template('index.html')
 
 @app.route('/notificacionges/<string:id_ges>', methods=['GET'])
-
 def get_ges_data(id_ges):
     # Hacer la solicitud GET a la API
     response = requests.get(f'{url_backend}/ges/{id_ges}')
+    practitioner_user = request.args.get('practitioner')
+    
     # Verificar si la solicitud fue exitosa (código de estado 200)
     if response.status_code == 200:
         data = response.json()
         # Procesar los datos obtenidos
-        #print(response.text)  # Imprimir el contenido de la respuesta en la consola
-        print("*********** DATOS DESDE API BACKEND ***********")
+        #consultar el person id y name del practitioner
+        response_practitioner = requests.get(f'{url_backend}/practitioner/{practitioner_user}')
         
-        # Extraer fecha y hora actual
-        now = datetime.datetime.now()
-        data['fechahora_notificacion'] = now.strftime("%Y-%m-%d %H:%M:%S")
-        print(data)
-        return render_template('form_ges.html', data=data)
+        if response_practitioner.status_code == 200:
+            data_practitioner = response_practitioner.json()
+            print("*********** DATOS PRACTITIONER ***********")
+            print(practitioner_user)
+            print(data_practitioner)
+            data['notificador_id'] = data_practitioner['person_id']
+            data['nombre_notificador'] = data_practitioner['given_name']+' '+data_practitioner['family_name']
+            #print(response.text)  # Imprimir el contenido de la respuesta en la consola
+            print("*********** DATOS DESDE API BACKEND ***********")
+        
+            # Extraer fecha y hora actual
+            now = datetime.datetime.now()
+            data['fechahora_notificacion'] = now.strftime("%Y-%m-%d %H:%M:%S")
+            print(data)
+            return render_template('form_ges.html', data=data)
+
+        else:
+            # Manejar el caso de error en la solicitud
+            return 'Error al obtener los datos del practitioner', 500
+
     else:
         # Manejar el caso de error en la solicitud
         return 'Error al obtener los datos del caso', 500
