@@ -8,7 +8,8 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y libgirepository1.0-dev libpango1.0-dev wkhtmltopdf \
     libcairo2  libgdk-pixbuf2.0-0 libffi-dev shared-mime-info \
-    libmysqlclient-dev libjpeg-dev libopenjp2-7 libtiff5 libffi-dev libprotobuf-dev && \
+    libmariadb-dev-compat libmariadb-dev libjpeg-dev libopenjp2-7 \
+    libffi-dev libprotobuf-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
