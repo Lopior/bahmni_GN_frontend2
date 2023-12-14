@@ -16,6 +16,12 @@ jobs:
     env:
       HELM_CHART_PATH: package/helm
     steps:
+    runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.who-to-greet }}
+    
       - uses: actions/checkout@v2
       - name: Set env.ARTIFACT_VERSION
         run: |
