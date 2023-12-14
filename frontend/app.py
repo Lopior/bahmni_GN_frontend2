@@ -14,8 +14,8 @@ load_dotenv()
 url_backend = os.getenv('url_backend_var')
 
 # Configura la ruta a wkhtmltopdf
-path_wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
-config_pdf = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+#path_wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
+#config_pdf = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
 
 @app.route('/')
