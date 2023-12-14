@@ -38,4 +38,4 @@ jobs:
           file: package/docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: juanjortega/gn_frontend:${{env.ARTIFACT_VERSION}},juanjortega/gn_frontend:latest
+          tags: juanjortega/bahmni_gn_frontend:${{env.ARTIFACT_VERSION}},juanjortega/bahmni_gn_frontend:latest
