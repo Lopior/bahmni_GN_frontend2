@@ -7,7 +7,7 @@ WORKDIR /app
 #instalar dependencias
 
 RUN apt-get update && \
-    apt-get install -y libgirepository1.0-dev
+    apt-get install -y libgirepository1.0-dev libpango1.0-dev
     
 # Copia el archivo requirements.txt al contenedor en /app
 COPY requirements.txt /app/
