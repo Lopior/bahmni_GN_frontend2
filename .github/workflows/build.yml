@@ -23,7 +23,7 @@ jobs:
               uses: docker/build-push-action@v3
               with:
                   context: .
-                  file: ./Dockerfile
+                  file: Dockerfile
                   platforms: linux/amd64,linux/arm64
                   push: true
                   tags: juanjortega/bahmni_gn_frontend:${{ github.sha }},juanjortega/bahmni_gn_frontend:latest
