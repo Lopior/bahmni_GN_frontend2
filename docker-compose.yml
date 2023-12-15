@@ -12,9 +12,9 @@ services:
     networks:
       bahmni-standard_default:
         aliases:
-          - "gn_frontend-alias"
+          - gn_frontend-alias
       
 networks:
   bahmni-standard_default:
       aliases:
-      - "gn_frontend-alias"
+        - gn_frontend-alias
