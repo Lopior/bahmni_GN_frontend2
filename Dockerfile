@@ -33,8 +33,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Set the library path
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu/girepository-1.0/:$LD_LIBRARY_PATH
 
-# Expone el puerto 5000 (el mismo que está configurado en tu aplicación Flask)
-EXPOSE 5000
+# Expone el puerto 8092 (el mismo que está configurado en tu aplicación Flask)
+EXPOSE 8092
 
 # Ejecuta la aplicación cuando el contenedor se inicia
 CMD ["python", "app.py"]
