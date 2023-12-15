@@ -16,5 +16,4 @@ services:
       
 networks:
   bahmni-standard_default:
-      aliases:
-        - gn_frontend-alias
+
