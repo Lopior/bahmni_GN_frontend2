@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     hostname: gesfrontend  
     ports:
-      - "5000:5000"
+      - "8092:8092"
     restart: "always"
     networks:
       bahmni-standard_default:
