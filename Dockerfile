@@ -38,3 +38,4 @@ EXPOSE 8092
 
 # Ejecuta la aplicación cuando el contenedor se inicia
 CMD ["python", "app.py"]
+
