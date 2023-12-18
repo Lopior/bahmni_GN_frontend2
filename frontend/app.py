@@ -168,6 +168,5 @@ def view_ges_data_pdf2(id_ges):
     return response
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8092)
-
+    app.run(host='0.0.0.0', debug=True, port=8092)
 
