@@ -10,25 +10,6 @@ from weasyprint import HTML
 
 app = Flask(__name__)
 
-#se agrega esta especie de middleware para que funcione con el reverse proxy
-class ReverseProxied(object):
-    def __init__(self, app):
-        self.app = app
-
-    def __call__(self, environ, start_response):
-        script_name = environ.get('HTTP_X_FORWARDED_PREFIX', '')
-        if script_name:
-            environ['SCRIPT_NAME'] = script_name
-            path_info = environ['PATH_INFO']
-            if path_info.startswith(script_name):
-                environ['PATH_INFO'] = path_info[len(script_name):]
-        return self.app(environ, start_response)
-
-app.wsgi_app = ReverseProxied(app.wsgi_app)
-
-load_dotenv()
-url_backend = os.getenv('url_backend_var')
-
 load_dotenv()
 url_backend = os.getenv('url_backend_var')
 
