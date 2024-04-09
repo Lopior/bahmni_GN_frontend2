@@ -1,12 +1,12 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect, make_response
 import requests
 import json
 import datetime
 from dotenv import load_dotenv
 import os
 import pdfkit
-from flask import make_response
 from weasyprint import HTML
+
 
 app = Flask(__name__)
 
