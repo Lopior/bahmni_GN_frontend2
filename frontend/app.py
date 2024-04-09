@@ -11,28 +11,12 @@ from weasyprint import HTML
 app = Flask(__name__)
 
 #se agrega esta especie de middleware para que funcione con el reverse proxy
-
-#class ReverseProxied(object):
- #   def __init__(self, app):
-  #      self.app = app
-
-   # def __call__(self, environ, start_response):
-    #    print("SCRIPT_NAME original:", environ.get('SCRIPT_NAME'))
-     #   print("PATH_INFO original:", environ.get('PATH_INFO'))
-
-      #  script_name = environ.get('HTTP_X_FORWARDED_PREFIX', '')
-       # if script_name:
-        #    environ['SCRIPT_NAME'] = script_name
-         #   path_info = environ['PATH_INFO']
-          #  if path_info.startswith(script_name):
-           #     environ['PATH_INFO'] = path_info[len(script_name):]
-
-        #print("SCRIPT_NAME modificado:", environ.get('SCRIPT_NAME'))
-        #print("PATH_INFO modificado:", environ.get('PATH_INFO'))
-
-        #return self.app(environ, start_response)
-
-#app.wsgi_app = ReverseProxied(app.wsgi_app)
+@app.before_request
+def handle_prefixed_route():
+    # Verifica si la ruta actual no comienza con '/notificacion'
+    if not request.path.startswith('/notificacion'):
+        # Redirige a la misma ruta pero con el prefijo '/notificacion' añadido
+        return redirect('/notificacion' + request.path, code=301)
 
 load_dotenv()
 url_backend = os.getenv('url_backend_var')
