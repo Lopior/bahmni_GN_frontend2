@@ -12,30 +12,27 @@ app = Flask(__name__)
 
 #se agrega esta especie de middleware para que funcione con el reverse proxy
 
-class ReverseProxied(object):
-    def __init__(self, app):
-        self.app = app
+#class ReverseProxied(object):
+ #   def __init__(self, app):
+  #      self.app = app
 
-    def __call__(self, environ, start_response):
-        print("SCRIPT_NAME original:", environ.get('SCRIPT_NAME'))
-        print("PATH_INFO original:", environ.get('PATH_INFO'))
+   # def __call__(self, environ, start_response):
+    #    print("SCRIPT_NAME original:", environ.get('SCRIPT_NAME'))
+     #   print("PATH_INFO original:", environ.get('PATH_INFO'))
 
-        script_name = environ.get('HTTP_X_FORWARDED_PREFIX', '')
-        if script_name:
-            environ['SCRIPT_NAME'] = script_name
-            path_info = environ['PATH_INFO']
-            if path_info.startswith(script_name):
-                environ['PATH_INFO'] = path_info[len(script_name):]
+      #  script_name = environ.get('HTTP_X_FORWARDED_PREFIX', '')
+       # if script_name:
+        #    environ['SCRIPT_NAME'] = script_name
+         #   path_info = environ['PATH_INFO']
+          #  if path_info.startswith(script_name):
+           #     environ['PATH_INFO'] = path_info[len(script_name):]
 
-        print("SCRIPT_NAME modificado:", environ.get('SCRIPT_NAME'))
-        print("PATH_INFO modificado:", environ.get('PATH_INFO'))
+        #print("SCRIPT_NAME modificado:", environ.get('SCRIPT_NAME'))
+        #print("PATH_INFO modificado:", environ.get('PATH_INFO'))
 
-        return self.app(environ, start_response)
+        #return self.app(environ, start_response)
 
-app.wsgi_app = ReverseProxied(app.wsgi_app)
-
-load_dotenv()
-url_backend = os.getenv('url_backend_var')
+#app.wsgi_app = ReverseProxied(app.wsgi_app)
 
 load_dotenv()
 url_backend = os.getenv('url_backend_var')
@@ -45,11 +42,11 @@ path_wkhtmltopdf = '/usr/bin/wkhtmltopdf'
 config_pdf = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
 
-@app.route('/')
+@app.route('/notificacion')
 def index():
     return render_template('index.html')
 
-@app.route('/notificacionges/<string:id_ges>', methods=['GET'])
+@app.route('/notificacion/notificacionges/<string:id_ges>', methods=['GET'])
 def get_ges_data(id_ges):
     try:
         # Hacer la solicitud GET a la API
@@ -94,7 +91,7 @@ def get_ges_data(id_ges):
         print("Error al notificar GES:", str(e))
         return jsonify({'cod': 'error', 'message': 'error al notificar GES'+str(e)})
     
-@app.route('/notificacionges', methods=['POST'])
+@app.route('/notificacion/notificacionges', methods=['POST'])
 def post_ges_data():
     data = dict(request.form)
     # Hacer la solicitud POST al backend
@@ -106,7 +103,7 @@ def post_ges_data():
         # Manejar el caso de error en la solicitud
         return 'Error al enviar los datos al backend', 500
 
-@app.route('/notificaciongespaciente/<string:uuid_notificacion>', methods=['GET'])
+@app.route('/notificacion/notificaciongespaciente/<string:uuid_notificacion>', methods=['GET'])
 def get_ges_paciente_data(uuid_notificacion):
     # Hacer la solicitud GET a la API
     response = requests.get(f'{url_backend}/ges?uuid={uuid_notificacion}')
@@ -124,7 +121,7 @@ def get_ges_paciente_data(uuid_notificacion):
     #data = "{}"
     #return render_template('form_ges_paciente.html', data=data)
 
-@app.route('/notificaciongespaciente', methods=['POST'])
+@app.route('/notificacion/notificaciongespaciente', methods=['POST'])
 def post_ges_data_paciente():
     try:
         data = dict(request.form)
@@ -142,7 +139,7 @@ def post_ges_data_paciente():
         print("Error al firmar notificacion GES:", str(e))
         return jsonify({'cod': 'error', 'message': 'error al firmar notificacion GES'+str(e)})
     
-@app.route('/vernotificacionges/<string:id_ges>', methods=['GET'])
+@app.route('/notificacion/vernotificacionges/<string:id_ges>', methods=['GET'])
 def view_ges_data(id_ges):
     # Hacer la solicitud GET a la API
     response = requests.get(f'{url_backend}/ges/{id_ges}')
@@ -160,7 +157,7 @@ def view_ges_data(id_ges):
 
 
 #pasar html a pdf
-@app.route('/vernotificacionges/pdf/<string:id_ges>', methods=['GET'])
+@app.route('/notificacion/vernotificacionges/pdf/<string:id_ges>', methods=['GET'])
 def view_ges_data_pdf(id_ges):
     #instalar en so
     #brew install wkhtmltopdf
@@ -176,7 +173,7 @@ def view_ges_data_pdf(id_ges):
 
     return response
 
-@app.route('/vernotificacionges/pdf2/<string:id_ges>', methods=['GET'])
+@app.route('/notificacion/vernotificacionges/pdf2/<string:id_ges>', methods=['GET'])
 def view_ges_data_pdf2(id_ges):
     #instalar en so
     #brew install pango gdk-pixbuf cairo
