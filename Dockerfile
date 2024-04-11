@@ -40,4 +40,7 @@ EXPOSE 8092
 #CMD ["python", "app.py"]
 
 # Ejecuta la aplicación usando Gunicorn en lugar del servidor predeterminado de Flask
-CMD ["gunicorn", "-b", "0.0.0.0:8092", "app:app"]
+#CMD ["gunicorn", "-b", "0.0.0.0:8092", "app:app" --reload --log-level debug]
+
+# Ejecuta la aplicación usando Gunicorn en lugar del servidor predeterminado de Flask
+CMD ["gunicorn", "-b", "0.0.0.0:8092", "app:app", "--reload", "--log-level", "debug"]
