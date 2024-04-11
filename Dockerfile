@@ -37,5 +37,7 @@ ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu/girepository-1.0/:$LD_LIBRARY_PATH
 EXPOSE 8092
 
 # Ejecuta la aplicación cuando el contenedor se inicia
-CMD ["python", "app.py"]
+#CMD ["python", "app.py"]
 
+# Ejecuta la aplicación usando Gunicorn en lugar del servidor predeterminado de Flask
+CMD ["gunicorn", "-b", "0.0.0.0:8092", "app:app"]
