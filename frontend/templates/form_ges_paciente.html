@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>FORMULARIO DE CONSTANCIA INFORMACIÓN AL PACIENTE GES</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://127.0.0.1:5000/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <form id="form_paciente" action="/notificaciongespaciente" method="post">
         <div class="container-fluid" >
             <div class="row">
                 <div class="col-md-12 centrado">
-                    <img src="http://127.0.0.1:5000/static/img/channels-15_bg_header.png" alt="img_header"><br>
+                    <img src="{{ url_for('static', filename='img/channels-15_bg_header.png') }}" alt="img_header"><br>
                 </div>
             </div>
         </div>
@@ -189,7 +189,7 @@
             <div class="row">
                 <div class="col-md-6 centrado">
                     <br><br>
-                    <img src="http://127.0.0.1:5000/static/img/firmaelectronica-min.png" alt="Firma notificador" height="60px"><br>
+                    <img src="{{ url_for('static', filename='img/firmaelectronica-min.png') }}" alt="Firma notificador" height="60px"><br>
                     Firmado electronicamente {{data.nombre_notificador}}<br>
                     <b>Informé diagnóstico GES</b> <br>
                      Firma de la persona que notifica
