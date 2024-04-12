@@ -43,7 +43,7 @@ EXPOSE 8092
 #CMD ["gunicorn", "-b", "0.0.0.0:8092", "app:app" --reload --log-level debug]
 
 # Establece la variable de entorno para SCRIPT_NAME
-ENV SCRIPT_NAME=/notificacion
+#ENV SCRIPT_NAME=/notificacion
 
 # Inicia Gunicorn con los parámetros adecuados
 CMD ["gunicorn", "-b", "0.0.0.0:8092", "app:app", "--reload", "--log-level", "debug"]
