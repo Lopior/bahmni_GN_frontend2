@@ -17,14 +17,21 @@ class ReverseProxied(object):
         self.app = app
 
     def __call__(self, environ, start_response):
+        print("Original SCRIPT_NAME:", environ.get('SCRIPT_NAME'))
+        print("Original PATH_INFO:", environ.get('PATH_INFO'))
+
         script_name = environ.get('HTTP_X_FORWARDED_PREFIX', '')
         if script_name:
             environ['SCRIPT_NAME'] = script_name
             path_info = environ.get('PATH_INFO', '')
-            # Corrige el manejo de PATH_INFO para evitar errores de índice
             if path_info.startswith(script_name):
                 environ['PATH_INFO'] = path_info[len(script_name):] if len(path_info) > len(script_name) else '/'
+        
+        print("Modified SCRIPT_NAME:", environ.get('SCRIPT_NAME'))
+        print("Modified PATH_INFO:", environ.get('PATH_INFO'))
+        
         return self.app(environ, start_response)
+
 
 
 app.wsgi_app = ReverseProxied(app.wsgi_app)
