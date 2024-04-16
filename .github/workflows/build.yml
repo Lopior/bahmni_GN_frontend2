@@ -40,5 +40,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: juanjortega/bahmni_gn_frontend:${{ github.sha }},juanjortega/bahmni_gn_frontend:latest
+          tags: juanjortega/bahmni_gn_frontend2:${{ github.sha }},juanjortega/bahmni_gn_frontend2:latest
           labels: ${{ steps.meta.outputs.labels }} 
